@@ -1,13 +1,15 @@
 import { Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import Education from "./pages/Education"
-import Internship from "./pages/Internship"
-import Projects from "./pages/Projects"
-import Skill from "./pages/Skill"
+import { lazy } from "react"
 import { Navbar } from "./components/Navbar"
 import { resumeData } from "./data/resumeData"
 import { Canvas } from "@react-three/fiber"
 import StarBackground from "./components/StarBackground"
+
+const Home = lazy(() => import("./pages/Home"));
+const Education = lazy(() => import("./pages/Education"));
+const Internship = lazy(() => import("./pages/Internship"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Skill = lazy(() => import("./pages/Skill"));
 
 function App() {
 

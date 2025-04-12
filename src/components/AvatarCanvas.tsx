@@ -1,13 +1,11 @@
 import * as THREE from "three";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import { TextureLoader } from "three";
 
 const AvatarPointCloud = ({ imageUrl }: { imageUrl: string }) => {
-    const texture = useLoader(TextureLoader, imageUrl);
     const pointsRef = useRef<THREE.Points>(null);
-    const [positions, setPositions] = useState<Float32Array | null>(null);
-    const [colors, setColors] = useState<Float32Array | null>(null);
+    const [positions, setPositions] = useState<Float32Array>();
+    const [colors, setColors] = useState<Float32Array>(new Float32Array());
     useEffect(() => {
         const img = new Image();
         img.src = imageUrl;
@@ -71,23 +69,25 @@ const AvatarPointCloud = ({ imageUrl }: { imageUrl: string }) => {
     return positions ? (
         <points ref={pointsRef}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    array={positions}
-                    itemSize={3}
-                    count={positions.length / 3}
-                />
-                <bufferAttribute
-                    attach="attributes-color"
-                    array={colors}
-                    itemSize={3}
-                    count={colors.length / 3}
-                />
+                <bufferGeometry>
+                    <bufferAttribute
+                        attach="attributes-position"
+                        args={[positions, 3]} 
+                        count={positions.length / 3}
+                    />
+                    {colors && (
+                        <bufferAttribute
+                            attach="attributes-color"
+                            args={[colors, 3]} 
+                            count={colors.length / 3}
+                        />
+                    )}
+                </bufferGeometry>
             </bufferGeometry>
             <pointsMaterial
                 size={0.1}
                 // color="#ffffff"
-                vertexColors={true} 
+                vertexColors={true}
                 transparent
                 opacity={0.9}
                 sizeAttenuation
