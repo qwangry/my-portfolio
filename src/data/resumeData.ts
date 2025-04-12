@@ -1,3 +1,6 @@
+import zzuLogo from "@/assets/zzu.png";
+import ucasLogo from "@/assets/ucas.png";
+
 export interface IContact {
     phone: string
     email: string
@@ -5,7 +8,7 @@ export interface IContact {
     website: string
 }
 
-export interface IEducation{
+export interface IEducation {
     school: string
     degree: string
     gpa: string
@@ -62,8 +65,8 @@ export const resumeData: ResumeData = {
             degree: "网络与信息安全硕士",
             gpa: "3.79/4.00",
             awards: ["学业奖学金", "openGemini开源之星"],
-            logo:"/src/assets/ucas.png",
-            schoolLink:"https://www.ucas.ac.cn/",
+            logo: ucasLogo,
+            schoolLink: "https://www.ucas.ac.cn/",
         },
         {
             school: "郑州大学",
@@ -78,8 +81,8 @@ export const resumeData: ResumeData = {
                 "郑州大学一等奖学金",
                 "郑州大学三好学生",
             ],
-            logo:"/src/assets/zzu.png",
-            schoolLink:"https://www.zzu.edu.cn/",
+            logo: zzuLogo,
+            schoolLink: "https://www.zzu.edu.cn/",
         },
     ],
     internship: [

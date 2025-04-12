@@ -69,20 +69,18 @@ const AvatarPointCloud = ({ imageUrl }: { imageUrl: string }) => {
     return positions ? (
         <points ref={pointsRef}>
             <bufferGeometry>
-                <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    args={[positions, 3]}
+                    count={positions.length / 3}
+                />
+                {colors && (
                     <bufferAttribute
-                        attach="attributes-position"
-                        args={[positions, 3]} 
-                        count={positions.length / 3}
+                        attach="attributes-color"
+                        args={[colors, 3]}
+                        count={colors.length / 3}
                     />
-                    {colors && (
-                        <bufferAttribute
-                            attach="attributes-color"
-                            args={[colors, 3]} 
-                            count={colors.length / 3}
-                        />
-                    )}
-                </bufferGeometry>
+                )}
             </bufferGeometry>
             <pointsMaterial
                 size={0.1}
