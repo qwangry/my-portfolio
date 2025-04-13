@@ -1,5 +1,5 @@
-import zzuLogo from "@/assets/zzu.png";
-import ucasLogo from "@/assets/ucas.png";
+import zzuLogo from "@/assets/ZZU.svg";
+import ucasLogo from "@/assets/UCAS.svg";
 
 export interface IContact {
     phone: string
@@ -120,7 +120,7 @@ export const resumeData: ResumeData = {
             ]
         },
         {
-            name: "openGauss社区贡献VitePress",
+            name: "openGauss社区贡献",
             description: "参与openGauss社区任务",
             date: "2024.06-2024.08",
             stack: ["VitePress", "Playwright"],

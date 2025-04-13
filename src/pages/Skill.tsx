@@ -38,7 +38,7 @@ const Skill = ({ skills }: { skills: string[] }) => {
         
         return {
             icon: match ? iconMap[match as keyof typeof iconMap] : 'fas fa-code',
-            color: colorMap[category as keyof typeof colorMap] || '#2a6df5',
+            // color: colorMap[category as keyof typeof colorMap] || '#2a6df5',
             category
         };
     };
@@ -48,7 +48,8 @@ const Skill = ({ skills }: { skills: string[] }) => {
             <Section>
                 <div className="skills-grid">
                     {skills.map((skill, index) => {
-                        const { icon, color, category } = getSkillInfo(skill);
+                        // const { icon, color, category } = getSkillInfo(skill);
+                        const { icon, category } = getSkillInfo(skill);
                         
                         return (
                             <div 
@@ -58,7 +59,7 @@ const Skill = ({ skills }: { skills: string[] }) => {
                             >
                                 <div 
                                     className="icon-wrapper"
-                                    style={{ '--icon-color': color } as React.CSSProperties}
+                                    // style={{ '--icon-color': color } as React.CSSProperties}
                                 >
                                     <i className={`${icon} skill-icon`}></i>
                                 </div>

@@ -3,10 +3,20 @@ import Scene from "../components/Scene"
 import Earth from "../components/Earth"
 import MyText from "../components/MyText"
 import StarBackground from "../components/StarBackground"
-import { Suspense } from "react"
+import { Suspense, useEffect, useState } from "react"
 import AvatarCanvas from "../components/AvatarCanvas"
 
 const Home = ({ name, contact }: { name: string, contact: IContact }) => {
+    const [scrollY, setScrollY] = useState(0)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+    
     return (
         <div className="container">
             <Scene>
@@ -29,7 +39,8 @@ const Home = ({ name, contact }: { name: string, contact: IContact }) => {
                         <Suspense fallback={null}>
                             <MyText
                                 children="Wang Ruying"
-                                position={[-1, -1.3, -1]}
+                                position={[-1, -1, -1]}
+                                scrollY={scrollY}
                                 props={{
                                     size: 0.25
                                 }} />

@@ -28,7 +28,7 @@ const StarBackground = () => {
         starsRef.current!.geometry = geometry;
         starsRef.current!.material = new THREE.PointsMaterial({
             size: 0.05,
-            color: 0x88ccff,
+            color: 0xfff988,
             transparent: true,
             opacity: 0.8,
             sizeAttenuation: true

@@ -1,37 +1,61 @@
-/* 基础变量 */
+/* ===== 基础变量 ===== */
 :root {
+  /* 浅色主题 */
   --primary-color: #2a6df5;
-  /* 主色调 */
+  --primary-color-rgb: 42, 109, 245;
   --secondary-color: #6c757d;
-  /* 次级文本色 */
-  --background-light: #f8f9fa;
-  /* 浅色背景 */
+  --text-primary: #333;
+  --text-hove-color-d: #2a6df5;
+  --text-hove-color-l: #2a6ef54d;
+  --text-secondary: #666;
+  --bg-body: #f8f9fa;
+  --bg-surface: #ffffff;
+  --bg-surface-rgb: 255, 255, 255;
   --border-color: #e9ecef;
-  /* 边框色 */
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* 通用阴影 */
+  --shadow-intensity: 0.1;
+  --icon-color: #2a6df5;
+  --icon-color-rgb: 42, 109, 245;
 }
 
-/* 全局字体 */
+[data-theme="dark"] {
+  /* 深色主题 */
+  --primary-color: #6c9bff;
+  --primary-color-rgb: 108, 155, 255;
+  --secondary-color: #8e9ba7;
+  --text-primary: #e0e0e0;
+  --text-hove-color-d: #6c9bff;
+  --text-hove-color-l: #6c9bff4d;
+  --text-secondary: #b0b0b0;
+  --bg-body: #1a1a1a;
+  --bg-surface: #2d2d2d;
+  --bg-surface-rgb: 45, 45, 45;
+  --border-color: #404040;
+  --shadow-intensity: 0.3;
+  --icon-color: #6c9bff;
+  --icon-color-rgb: 108, 155, 255;
+}
+
+/* ===== 全局样式 ===== */
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: var(--text-primary);
+  background-color: var(--bg-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 canvas {
   display: block;
   background: transparent;
   z-index: -1;
-  /* 置于内容下层 */
 }
-
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* ===== 标题样式 ===== */
 h1,
 h2,
 h3 {
@@ -53,123 +77,52 @@ h3 {
   font-size: 1.5rem;
 }
 
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
 .header {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.contact-info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* 每行两列 */
-  gap: 20px;
-  max-width: 600px;
-  /* 限制最大宽度 */
-  margin: 0 auto;
-  /* 居中显示 */
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contact-item a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.contact-item a:hover {
-  color: #007bff;
-}
-
-/* GitHub按钮单独占一行 */
-.contact-button {
-  grid-column: 1 / -1;
-  /* 跨越所有列 */
-  text-align: center;
-  /* 保持其他样式不变 */
-}
-
-.section {
-  margin-bottom: 40px;
-}
-
-.section-title {
-  border-bottom: 2px solid #333;
-  padding-bottom: 10px;
-}
-
-/* 移动端适配 */
-@media (max-width: 768px) {
-  .container {
-      padding: 15px;
-  }
-
-  .contact-info {
-      flex-direction: column;
-      align-items: center;
-  }
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-.main-content {
-  margin-top: 80px;
-  /* 根据导航栏高度调整 */
-  padding: 20px 0;
-}
-
-.canvas-container{
-  z-index: -2;
-}
-
-/* ===== 基础导航样式 ===== */
+/* ===== 导航栏 ===== */
 .navbar {
-  /* background: #fff; */
-  background-color: rgba(255, 255, 255, 0.01);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, calc(var(--shadow-intensity) * 0.5));
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 
 /* 桌面导航 */
 .desktop-nav {
   display: flex;
   gap: 2rem;
-  flex-grow: 1;
-  /* 占据剩余空间 */
   justify-content: center;
 }
 
 .nav-link {
   position: relative;
   padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: #666;
+  color: var(--text-primary);
   transition: color 0.3s;
 }
 
-.nav-link:hover {
-  color: #007bff;
-}
-
+.nav-link:hover,
 .nav-link.active {
-  color: #007bff;
-  font-weight: 500;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .underline {
@@ -178,20 +131,17 @@ a:hover {
   left: 0;
   right: 0;
   height: 2px;
-  background: #007bff;
+  background: var(--primary-color);
 }
 
-/* ===== 移动端导航 ===== */
+/* 移动导航 */
 .mobile-nav-wrapper {
   display: none;
-  /* 默认隐藏移动端菜单 */
 }
 
-/* 汉堡按钮 */
 .hamburger-btn {
   background: none;
   border: none;
-  cursor: pointer;
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -202,7 +152,7 @@ a:hover {
 .hamburger-line {
   width: 24px;
   height: 2px;
-  background: #333;
+  background: var(--text-primary);
   transition: transform 0.3s, opacity 0.3s;
 }
 
@@ -225,105 +175,73 @@ a:hover {
   left: 0;
   right: 0;
   top: 100%;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(var(--bg-surface-rgb), 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, calc(var(--shadow-intensity) * 0.5));
   padding: 1rem;
 }
 
 .mobile-link {
   display: block;
   padding: 12px;
-  color: #666;
+  color: var(--text-secondary);
   text-decoration: none;
   border-radius: 4px;
 }
 
+.mobile-link:hover,
 .mobile-link.active {
-  background: #e3f2fd;
-  color: #007bff;
+  background: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
 }
 
-/* ===== 响应式断点 ===== */
-@media (max-width: 768px) {
-  .main-content {
-      margin-top: 60px;
-  }
-
-  .desktop-nav {
-      display: none;
-      /* 移动端隐藏桌面导航 */
-  }
-
-  .mobile-nav-wrapper {
-      display: block;
-      /* 显示移动端菜单容器 */
-  }
+/* 主题切换按钮 */
+.mobile-theme-toggle,
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 769px) {
-  .mobile-nav-wrapper {
-      display: none;
-      /* 桌面端隐藏移动端菜单 */
-  }
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
-/* 首页样式 */
-.hero-section {
-  text-align: center;
-  padding: 4rem 0;
+.theme-toggle svg {
+  width: 60%;
+  height: 60%;
+  stroke: var(--text-primary);
 }
 
-.hero-title {
-  /* 透明字体; */
-  /* 隐藏字体但保持占位 */
-  color: transparent;
-
+/* ===== 主要内容 ===== */
+.main-content {
+  margin-top: 80px;
+  padding: 20px 0;
 }
 
-/* 最终样式 */
-.avatar-wrapper {
-  margin: 0 auto;
-  position: relative;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 2rem;
-
-  .avatar {
-      display: none;
-  }
-
-  .canvas-container {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: rgba(67, 82, 217, 0.1);
-      overflow: hidden;
-      border: 4px solid var(--primary-color);
-      /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); */
-      box-shadow: 0 8px 30px rgba(166, 8, 8, 0.15);
-
-      canvas {
-          filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-      }
-  }
-
-  &:hover {
-      .canvas-container {
-          transform: scale(1.05);
-          transition: all 0.3s ease;
-      }
-  }
+.canvas-container {
+  z-index: -2;
 }
 
+/* ===== 联系信息 ===== */
 .contact-info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .contact-item {
-  background: var(--background-light);
+  background: rgba(var(--bg-surface-rgb), 0.8);
   padding: 1rem;
   border-radius: 8px;
   display: flex;
@@ -331,14 +249,24 @@ a:hover {
   gap: 0.8rem;
 }
 
-.icon {
+.contact-item:hover {
+  transform: translateY(-2px);
+}
+
+.contact-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-item a:hover {
   color: var(--primary-color);
-  font-size: 1.2rem;
 }
 
 .contact-button {
-  background: var(--primary-color);
-  color: white !important;
+  grid-column: 1 / -1;
+  text-align: center;
+  background-color: rgba(var(--primary-color-rgb), 0.8);
+  color: var(--text-primary);
   padding: 1rem;
   border-radius: 8px;
   display: flex;
@@ -350,29 +278,68 @@ a:hover {
 }
 
 .contact-button:hover {
+  /* color: var(--text-hove-color-l); */
+  background-color: rgba(var(--bg-surface-rgb), 0.8);
   transform: translateY(-2px);
 }
 
-/* styles.css */
-/* 教育经历卡片 */
-.education-card {
-  display: flex;
-  gap: 2rem;
-  /* background: white; */
+.section {
+  margin-bottom: 40px;
+}
 
-  background-color: rgba(67, 82, 217, 0.01);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  margin-bottom: 2rem;
+.section-title {
+  border-bottom: 2px solid var(--text-primary);
+  padding-bottom: 10px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ===== 卡片通用样式 ===== */
+.education-card,
+.internship-item,
+.project-item,
+.skill-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, var(--shadow-intensity));
   transition: transform 0.3s ease;
 }
 
-.education-card:hover {
-  transform: translateY(-3px);
+.education-card,
+.internship-item,
+.project-item {
+  background: linear-gradient(45deg,
+      transparent,
+      rgba(var(--icon-color-rgb), 0.1),
+      transparent);
 }
 
-/* Logo区域 */
+.education-card:hover,
+.internship-item:hover,
+.project-item:hover,
+.skill-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, calc(var(--shadow-intensity) * 1.2));
+}
+
+.education-card {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
 .logo-wrapper {
   flex: 0 0 120px;
   display: flex;
@@ -392,7 +359,6 @@ a:hover {
   opacity: 0.8;
 }
 
-/* 内容区域 */
 .content-wrapper {
   flex: 1;
   min-width: 0;
@@ -432,7 +398,7 @@ a:hover {
 }
 
 .stat-label {
-  color: #666;
+  color: var(--secondary-color);
   font-weight: 500;
 }
 
@@ -467,36 +433,10 @@ a:hover {
   font-size: 1.1rem;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .education-card {
-      flex-direction: column;
-      gap: 1.5rem;
-      padding: 1.5rem;
-      background-color: rgba(67, 82, 217, 0.01);
-  }
-
-  .logo-wrapper {
-      justify-content: center;
-  }
-
-  .school-logo {
-      max-width: 100px;
-  }
-
-  .stats-container {
-      flex-direction: column;
-      gap: 1rem;
-  }
-}
-
 /* 实习经历样式 */
 .internship-item {
-  /* background: white; */
-  background-color: rgba(154, 33, 99, 0.01);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: var(--shadow);
   margin-bottom: 2rem;
   position: relative;
   transition: transform 0.3s ease;
@@ -519,7 +459,7 @@ a:hover {
 }
 
 .internship-item p:nth-of-type(2) {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin-bottom: 1.2rem;
 }
@@ -545,26 +485,10 @@ a:hover {
   font-weight: bold;
 }
 
-/* 移动端适配 */
-/* @media (max-width: 768px) {
-  .internship-item::before {
-      left: -30px;
-      font-size: 1.4rem;
-  }
-
-  .internship-item {
-      padding: 1.5rem;
-      margin-left: 30px;
-  }
-} */
-
 /* 项目经历样式 */
 .project-item {
-  /* background: white; */
-  background-color: rgba(67, 82, 217, 0.01);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: var(--shadow);
   margin-bottom: 2rem;
   position: relative;
 }
@@ -580,6 +504,11 @@ a:hover {
   border-radius: 4px 0 0 4px;
 }
 
+.project-item:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
 .project-item h3 {
   margin-top: 0;
 }
@@ -592,13 +521,13 @@ a:hover {
 }
 
 .project-item .stack span {
-  background: var(--background-light);
+  /* background: var(--background-light); */
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.9rem;
 }
 
-/* 技能模块样式优化 */
+/* ===== 技能卡片 ===== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -607,20 +536,12 @@ a:hover {
 }
 
 .skill-card {
-  /* background: white; */
-  background-color: rgba(67, 82, 217, 0.01);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: var(--shadow);
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .skill-card::before {
@@ -631,9 +552,9 @@ a:hover {
   width: 200%;
   height: 200%;
   background: linear-gradient(45deg,
-          transparent,
-          rgba(var(--icon-color-rgb), 0.1),
-          transparent);
+      transparent,
+      rgba(var(--icon-color-rgb), 0.1),
+      transparent);
   transform: rotate(45deg);
   transition: 0.5s;
 }
@@ -644,11 +565,11 @@ a:hover {
 
 @keyframes shine {
   0% {
-      left: -50%;
+    left: -50%;
   }
 
   100% {
-      left: 150%;
+    left: 150%;
   }
 }
 
@@ -673,31 +594,143 @@ a:hover {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #444;
+  color: var(--text-primary);
 }
 
-/* 分类标签 */
 .skill-card::after {
-  content: attr(data-category);
+  /* content: attr(data-category); */
   position: absolute;
   top: 10px;
   right: -30px;
   padding: 4px 30px;
-  background: var(--icon-color);
-  color: white;
+  /* background: var(--icon-color);
+  color: white; */
   font-size: 0.75rem;
   transform: rotate(45deg);
   text-transform: uppercase;
 }
 
-/* 响应式设计 */
+.icon {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+/* ===== 响应式设计 ===== */
 @media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav-wrapper {
+    display: block;
+  }
+
+  .main-content {
+    margin-top: 60px;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    /* background-color: rgba(67, 82, 217, 0.01); */
+  }
+
+  .logo-wrapper {
+    justify-content: center;
+  }
+
+  .school-logo {
+    max-width: 100px;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .skills-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
   .skill-card {
-      padding: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* 首页样式 */
+.hero-section {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.hero-title {
+  /* 透明字体; */
+  /* 隐藏字体但保持占位 */
+  color: transparent;
+
+}
+
+.avatar-wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 2rem;
+
+  .avatar {
+    display: none;
+  }
+
+  .canvas-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 8px 30px rgba(var(--primary-color-rgb), 0.15);
+    /* background-color: rgba(67, 82, 217, 0.1); */
+    overflow: hidden;
+    /* border: 4px solid var(--primary-color); */
+    /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); */
+    /* box-shadow: 0 8px 30px rgba(166, 8, 8, 0.15); */
+
+    canvas {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    }
+  }
+
+  &:hover {
+    .canvas-container {
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+/* ===== 保留原有动画 ===== */
+@keyframes core-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
   }
 }
 
@@ -722,8 +755,8 @@ a:hover {
   border-radius: 50%;
   animation: core-pulse 1.5s infinite;
   box-shadow:
-      0 0 10px #ff4444,
-      0 0 20px rgba(255, 68, 68, 0.5);
+    0 0 10px #ff4444,
+    0 0 20px rgba(255, 68, 68, 0.5);
   z-index: 2;
 }
 
@@ -748,31 +781,31 @@ a:hover {
 
   0%,
   100% {
-      transform: scale(1);
-      opacity: 0.9;
-      box-shadow: 0 0 10px #ff4444;
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 10px #ff4444;
   }
 
   50% {
-      transform: scale(1.2);
-      opacity: 0.7;
-      box-shadow: 0 0 15px #ff4444;
+    transform: scale(1.2);
+    opacity: 0.7;
+    box-shadow: 0 0 15px #ff4444;
   }
 }
 
 /* 涟漪扩散动画 */
 @keyframes ripple {
   0% {
-      transform: translate(-50%, -50%) scale(0.8);
-      opacity: 0.6;
-      border-width: 2px;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+    border-width: 2px;
   }
 
   100% {
-      transform: translate(-50%, -50%) scale(1.8);
-      opacity: 0;
-      border-width: 0.5px;
-      /* 扩散时变avatar-wrapper细 */
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+    border-width: 0.5px;
+    /* 扩散时变avatar-wrapper细 */
   }
 }
 
@@ -783,21 +816,21 @@ a:hover {
   margin: 0 auto;
 
   canvas {
-      position: absolute !important;
-      left: 0;
-      top: 0;
-      mix-blend-mode: multiply;
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    mix-blend-mode: multiply;
   }
 
   img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transition: opacity 0.5s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.5s;
   }
 
   &:hover img {
-      opacity: 0.2 !important;
+    opacity: 0.2 !important;
   }
 }
