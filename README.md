@@ -109,3 +109,7 @@ npm install --save-dev @vitejs/plugin-react@4.3.4 rollup-plugin-visualizer@5.14.
 ## 项目部署
 
 选用[vercel平台](https://vercel.com/)托管[GitHub仓库](https://github.com/qwangry/my-portfolio)，部署项目
+
+> 注意事项：单页面应用的路由问题
+> 
+> 解决方案：配置vercel.json，指定跳转规则
