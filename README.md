@@ -25,20 +25,20 @@ npm install --save-dev eslint-plugin-react-hooks@5.1.0 eslint-plugin-react-refre
 npm install --save-dev husky@9.1.7 lint-staged@15.5.1 @commitlint/cli@19.8.0 @commitlint/config-conventional@19.8.0
 ```
 
-#### 初始化
+- 初始化
 
 ```bash
 npx husky install
 npm pkg set scripts.prepare="husky install"
 ```
 
-#### 配置Commitlint
+- 配置Commitlint
 
 ```bash
 npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
 ```
 
-#### 配置Lint-Staged
+- 配置Lint-Staged
 
 ```bash
 npx husky add .husky/pre-commit "npx lint-staged"
@@ -105,3 +105,7 @@ npm install --save-dev @vitejs/plugin-react@4.3.4 rollup-plugin-visualizer@5.14.
 ### 移动端适配
 
 在最初的实现中就实时关注移动端效果，完成移动端适配
+
+## 项目部署
+
+选用[vercel平台](https://vercel.com/)托管[GitHub仓库](https://github.com/qwangry/my-portfolio)，部署项目
