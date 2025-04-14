@@ -30,10 +30,7 @@ const PetercatAssistant = () => {
                 apiDomain: 'https://api.petercat.ai',
                 token: import.meta.env.VITE_PETERCAT_TOKEN,
                 drawerWidth: drawerWidth,
-                assistantMeta: {
-                    avatar: "https://avatars.githubusercontent.com/u/58112936?v=4",
-                    title: "简历助手"
-                }
+                clearMessage: true,
             })
         } else {
             console.error('PetercatLUI is not loaded')
