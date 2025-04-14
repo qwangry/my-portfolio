@@ -35,7 +35,7 @@ const Skill = ({ skills }: { skills: string[] }) => {
     const getSkillInfo = (skill: string) => {
         const match = Object.keys(iconMap).find(key => skill.includes(key));
         const category = Object.keys(colorMap).find(cat => skill.includes(cat)) || '默认';
-        
+
         return {
             icon: match ? iconMap[match as keyof typeof iconMap] : 'fas fa-code',
             // color: colorMap[category as keyof typeof colorMap] || '#2a6df5',
@@ -48,18 +48,17 @@ const Skill = ({ skills }: { skills: string[] }) => {
             <Section>
                 <div className="skills-grid">
                     {skills.map((skill, index) => {
-                        // const { icon, color, category } = getSkillInfo(skill);
                         const { icon, category } = getSkillInfo(skill);
-                        
+
                         return (
-                            <div 
-                                key={index} 
+                            <div
+                                key={index}
                                 className="skill-card"
                                 data-category={category.toLowerCase()}
                             >
-                                <div 
+                                <div
                                     className="icon-wrapper"
-                                    // style={{ '--icon-color': color } as React.CSSProperties}
+                                // style={{ '--icon-color': color } as React.CSSProperties}
                                 >
                                     <i className={`${icon} skill-icon`}></i>
                                 </div>

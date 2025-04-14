@@ -4,7 +4,6 @@ import { Section } from "../components/Section";
 const Internship = ({ internship }: { internship: IInternship[] }) => {
     return (
         <div className="container">
-            {/* <Section title="实习经历"> */}
             <Section >
                 {internship.map((intern, index) => (
                     <div key={index} className="internship-item">

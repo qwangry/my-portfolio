@@ -30,14 +30,13 @@ export default function Earth() {
     const { isMobile } = useViewport()
     const [earthRadius, setEarthRadius] = useState(isMobile ? EARTH_CONFIG.mobile.radius : EARTH_CONFIG.pc.radius)
 
-    // 精确坐标计算（核心）
+    // 精确坐标计算
     const calculateMarkerPosition = useCallback(() => {
         const { lat, lng, size } = EARTH_CONFIG.marker
         // const radius = earthRadius + size * 1.2 // 增加偏移量补偿
         const radius = earthRadius + size * 0.5 // 增加偏移量补偿
 
         const adjustedLat = lat - 1.0
-        // const phi = MathUtils.degToRad(90 - lat)
         const phi = MathUtils.degToRad(90 - adjustedLat)
         const theta = MathUtils.degToRad(lng + 180)
 
@@ -58,12 +57,9 @@ export default function Earth() {
             controlsRef.current?.update()
         }
 
-        // updateDimensions()
         // 添加防抖优化
         const debouncedUpdate = debounce(updateDimensions, 100)
-        // window.addEventListener('resize', updateDimensions)
         window.addEventListener('resize', debouncedUpdate)
-        // return () => window.removeEventListener('resize', updateDimensions)
         return () => window.removeEventListener('resize', debouncedUpdate)
     }, [camera, isMobile])
 

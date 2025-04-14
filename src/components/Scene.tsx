@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 
 export default function Scene({ children }: { children: React.ReactNode }) {
-    // const CAMERA_POSITION: [number, number, number] = [0, 0, 5]
+
     const CAMERA_POSITION: [number, number, number] = [0, 0, 5]
 
     return (

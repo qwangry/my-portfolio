@@ -4,7 +4,6 @@ import { Section } from "../components/Section";
 const Projects = ({ projects }: { projects: IProject[] }) => {
     return (
         <div className="container">
-            {/* <Section title="项目经历"> */}
             <Section>
                 {projects.map((project, index) => (
                     <div key={index} className="project-item">
