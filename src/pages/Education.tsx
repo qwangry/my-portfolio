@@ -26,6 +26,7 @@ const Education = ({ education }: { education: IEducation[] }) => {
                             <div className="school-header">
                                 <h3>{edu.school}</h3>
                                 <p className="degree">{edu.degree}</p>
+                                <p className="time">{edu.time}</p>
                             </div>
 
                             <div className="stats-container">

@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar"
 import { resumeData } from "./data/resumeData"
 import { Canvas } from "@react-three/fiber"
 import StarBackground from "./components/StarBackground"
+import PetercatAssistant from "./components/PetercatAssistant"
 
 const Home = lazy(() => import("./pages/Home"));
 const Education = lazy(() => import("./pages/Education"));
@@ -38,6 +39,7 @@ function App() {
           <Route path="/skills" element={<Skill skills={resumeData.skills} />} />
         </Routes>
       </div>
+      <PetercatAssistant />
     </>
   )
 }

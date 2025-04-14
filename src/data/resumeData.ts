@@ -14,6 +14,7 @@ export interface IEducation {
     gpa: string
     ranking?: string
     awards: string[]
+    time: string
     logo?: string
     schoolLink?: string
 }
@@ -64,9 +65,10 @@ export const resumeData: ResumeData = {
             school: "中国科学院大学",
             degree: "网络与信息安全硕士",
             gpa: "3.79/4.00",
-            awards: ["学业奖学金", "openGemini开源之星"],
+            awards: ["中国科学院大学学业奖学金", "openGemini开源之星"],
             logo: ucasLogo,
             schoolLink: "https://www.ucas.ac.cn/",
+            time: "2022.09-2025.06",
         },
         {
             school: "郑州大学",
@@ -83,6 +85,7 @@ export const resumeData: ResumeData = {
             ],
             logo: zzuLogo,
             schoolLink: "https://www.zzu.edu.cn/",
+            time: "2018.09-2022.06",
         },
     ],
     internship: [

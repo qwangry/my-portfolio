@@ -3,6 +3,7 @@ import { TextureLoader, Vector3, MathUtils } from 'three'
 import { Html, OrbitControls } from '@react-three/drei'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import debounce from '../common/debounce'
+import { useViewport } from '../hooks/useViewport'
 
 // 配置参数
 const EARTH_CONFIG = {
@@ -26,9 +27,9 @@ const EARTH_CONFIG = {
 export default function Earth() {
     const { camera } = useThree()
     const controlsRef = useRef<any>(null)
-    const [isMobile, setIsMobile] = useState(false)
-    const [earthRadius, setEarthRadius] = useState(EARTH_CONFIG.pc.radius)
-    
+    const { isMobile } = useViewport()
+    const [earthRadius, setEarthRadius] = useState(isMobile ? EARTH_CONFIG.mobile.radius : EARTH_CONFIG.pc.radius)
+
     // 精确坐标计算（核心）
     const calculateMarkerPosition = useCallback(() => {
         const { lat, lng, size } = EARTH_CONFIG.marker
@@ -51,11 +52,8 @@ export default function Earth() {
     // 响应式逻辑（强制更新）
     useEffect(() => {
         const updateDimensions = () => {
-            const mobileMode = window.innerWidth <= 768
-            setIsMobile(mobileMode)
-            setEarthRadius(mobileMode ? EARTH_CONFIG.mobile.radius : EARTH_CONFIG.pc.radius)
-
-            camera.position.z = mobileMode ? EARTH_CONFIG.mobile.cameraZ : EARTH_CONFIG.pc.cameraZ
+            setEarthRadius(isMobile ? EARTH_CONFIG.mobile.radius : EARTH_CONFIG.pc.radius)
+            camera.position.z = isMobile ? EARTH_CONFIG.mobile.cameraZ : EARTH_CONFIG.pc.cameraZ
             camera.updateProjectionMatrix()
             controlsRef.current?.update()
         }
@@ -67,7 +65,7 @@ export default function Earth() {
         window.addEventListener('resize', debouncedUpdate)
         // return () => window.removeEventListener('resize', updateDimensions)
         return () => window.removeEventListener('resize', debouncedUpdate)
-    }, [camera])
+    }, [camera, isMobile])
 
     // 加载纹理
     const [colorMap] = useLoader(TextureLoader, ['/AS17-148-22727_lrg.jpg'])
