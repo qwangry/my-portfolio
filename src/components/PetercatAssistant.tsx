@@ -30,8 +30,9 @@ const PetercatAssistant = () => {
                 apiDomain: 'https://api.petercat.ai',
                 token: import.meta.env.VITE_PETERCAT_TOKEN,
                 drawerWidth: drawerWidth,
-                MetaData: {
-                    avatar: '/avatar.png'
+                assistantMeta: {
+                    avatar: "https://avatars.githubusercontent.com/u/58112936?v=4",
+                    title: "简历助手"
                 }
             })
         } else {
