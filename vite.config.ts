@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
+import viteCompression from 'vite-plugin-compression';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,7 +12,9 @@ export default defineConfig({
       open: true,
       gzipSize: true,
       brotliSize: true
-    })
+    }),
+    viteCompression({ algorithm: 'brotliCompress' }),
+    ViteImageOptimizer()
   ],
   assetsInclude: ['**/*.typeface.json'],
   resolve: {
@@ -21,7 +25,10 @@ export default defineConfig({
   base: './', // 关键配置：使用相对路径适配所有部署环境
   optimizeDeps: {
     include: [
-      '@react-three/drei/core/OrbitControls' // 优化drei组件
+      '@react-three/drei/core/OrbitControls', // 优化drei组件
+      '@react-three/drei', // 整体提前编译
+      'three',
+      '@react-three/fiber'
     ]
   },
   build: {

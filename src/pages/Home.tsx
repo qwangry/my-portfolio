@@ -1,10 +1,11 @@
 import { IContact } from "../data/resumeData"
 import Scene from "../components/Scene"
-import Earth from "../components/Earth"
-import MyText from "../components/MyText"
-import StarBackground from "../components/StarBackground"
-import { Suspense, useEffect, useState } from "react"
-import AvatarCanvas from "../components/AvatarCanvas"
+import { lazy, Suspense, useEffect, useState } from "react"
+
+const Earth = lazy(() => import('../components/Earth'))
+const AvatarCanvas = lazy(() => import('../components/AvatarCanvas'))
+const MyText = lazy(() => import('../components/MyText'))
+const StarBackground = lazy(() => import('../components/StarBackground'))
 
 const Home = ({ name, contact }: { name: string, contact: IContact }) => {
     const [scrollY, setScrollY] = useState(0)

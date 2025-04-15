@@ -1,6 +1,8 @@
 import { useLoader, useThree } from '@react-three/fiber'
 import { TextureLoader, Vector3, MathUtils } from 'three'
-import { Html, OrbitControls } from '@react-three/drei'
+import { Html } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei/core/OrbitControls'
+
 import { useEffect, useRef, useState, useCallback } from 'react'
 import debounce from '../common/debounce'
 import { useViewport } from '../hooks/useViewport'
