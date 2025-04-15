@@ -11,13 +11,13 @@ const links = [
 ];
 
 export const Navbar = () => {
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
+    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
 
     // 初始化主题
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' || 'light';
+        const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' || 'dark';
         setTheme(savedTheme);
         document.documentElement.setAttribute('data-theme', savedTheme);
     }, []);
